@@ -3,7 +3,6 @@ const proyectoController = require('../controllers/proyecto')
 
 const router = Router();
 
-router.get("/", proyectoController.find);
 router.post("/", proyectoController.create);
 router.put("/:id", proyectoController.update);
 router.delete("/:id", proyectoController.delete);

@@ -15,21 +15,6 @@ const proyectoController = {
             return res.status(400).json({ msg: "Petición invalida" });
         }
     },
-    find: async (req, res) => {
-        try {
-            const proyecto = await Proyecto.find().
-                populate([
-                    { path: 'cliente', select: 'nombre' },
-                    { path: 'tipoProyecto', select: 'nombre' },
-                    { path: 'universidad', select: 'nombre' },
-                    { path: 'etapa', select: 'nombre' }
-                ]);
-            return res.status(200).json(proyecto);
-        } catch (error) {
-            console.log(error);
-            return res.status(400).json({ msg: "Petición invalida" });
-        }
-    },
     update: async (req, res) => {
         try {
             const proyecto = await Proyecto.findByIdAndUpdate(
