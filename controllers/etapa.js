@@ -28,7 +28,7 @@ const etapaController = {
         try {
             const etapa = await Etapa.findByIdAndUpdate(
                 req.params.id,
-                { ...req.body, fechaActualizacion: new Date() },
+                { ...req.body, fechaActualizacion: Date.now() },
                 { returnOriginal: false }
             );
             return res.status(200).json(etapa);

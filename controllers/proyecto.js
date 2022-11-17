@@ -19,7 +19,7 @@ const proyectoController = {
         try {
             const proyecto = await Proyecto.findByIdAndUpdate(
                 req.params.id,
-                { ...req.body, fechaActualizacion: new Date() },
+                { ...req.body, fechaActualizacion: Date.now() },
                 { returnOriginal: false }
             );
             return res.status(200).json(proyecto);

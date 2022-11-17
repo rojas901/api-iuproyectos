@@ -1,14 +1,56 @@
 version: "3.9"
 services:
   api:
-    image: rojas901/proyectos-api
+    container_name: api
+    image: rojas901/proyecto-api:v5
     ports:
       - "4000:4000"
     networks:
-      - proyectos-app
+      - proyectos-net
+  
+  microservicio1:
+    container_name: microservicio1
+    image: rojas901/proyecto-microservicio:v5
+    ports:
+      - "4001:4001"
+    networks:
+      - proyectos-net
+  
+  microservicio2:
+    container_name: microservicio2
+    image: rojas901/proyecto-microservicio:v5
+    ports:
+      - "4002:4001"
+    networks:
+      - proyectos-net
+
+  microservicio3:
+    container_name: microservicio3
+    image: rojas901/proyecto-microservicio:v5
+    ports:
+      - "4003:4001"
+    networks:
+      - proyectos-net
+
+  nginx:
+    container_name: nginx
+    image: nginx
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+    depends_on:
+      - microservicio1
+      - microservicio2
+      - microservicio3
+    ports:
+      - "4004:4004"
+    networks:
+      - proyectos-net
 
 networks:
-  proyectos-app:
+  proyectos-net:
 
-#docker compose up (crea todo los especificado en este archivo)
+#docker compose up (crea todo los especificado en este archivo, si se le agrega -d dice si es done)
 #docker compose down (elimina los container creados con el primer comando)
+#docker compose build (compila imagenes si hay que hacerlo)
+#docker compose logs -f
+#build: context: . (toma el dockerfile de directorio raiz)
