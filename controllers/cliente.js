@@ -16,7 +16,7 @@ const clienteController = {
 		}
 	},
 	find: async (req, res) => {
-		try {
+		try {			
 			const cliente = await Cliente.find();
 			return res.status(200).json(cliente);
 		} catch (error) {

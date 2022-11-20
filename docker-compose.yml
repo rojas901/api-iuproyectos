@@ -10,41 +10,47 @@ services:
   
   microservicio1:
     container_name: microservicio1
-    image: rojas901/proyecto-microservicio:v5
+    image: rojas901/proyecto-microservicio:v6
     ports:
-      - "4001:4001"
+      - "4001"
     networks:
       - proyectos-net
+    environment:
+      HOST: microservicio1 
   
   microservicio2:
     container_name: microservicio2
-    image: rojas901/proyecto-microservicio:v5
+    image: rojas901/proyecto-microservicio:v6
     ports:
-      - "4002:4001"
+      - "4001"
     networks:
       - proyectos-net
+    environment:
+      HOST: microservicio2 
 
   microservicio3:
     container_name: microservicio3
-    image: rojas901/proyecto-microservicio:v5
+    image: rojas901/proyecto-microservicio:v6
     ports:
-      - "4003:4001"
+      - "4001"
     networks:
       - proyectos-net
+    environment:
+      HOST: microservicio3 
 
   nginx:
     container_name: nginx
     image: nginx
-    volumes:
-      - ./nginx.conf:/etc/nginx/nginx.conf
     depends_on:
       - microservicio1
       - microservicio2
       - microservicio3
     ports:
-      - "4004:4004"
+      - "8080:80"
     networks:
       - proyectos-net
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
 
 networks:
   proyectos-net:
