@@ -46,7 +46,7 @@ services:
       - microservicio2
       - microservicio3
     ports:
-      - "8080:80"
+      - "6027:80"
     networks:
       - proyectos-net
     volumes:
